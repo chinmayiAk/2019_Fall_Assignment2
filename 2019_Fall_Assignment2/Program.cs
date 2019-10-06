@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace _2019_Fall_Assignment2
 {
@@ -33,12 +34,14 @@ namespace _2019_Fall_Assignment2
             int[,] intervals = { { 0, 30 }, { 5, 10 }, { 15, 20 } };
             int minMeetingRooms = MinMeetingRooms(intervals);
             Console.WriteLine("Minimum meeting rooms needed = {0}\n", minMeetingRooms);
+            
 
             int[] arr = { -4, -1, 0, 3, 10 };
             int[] sortedSquares = SortedSquares(arr);
             Console.WriteLine("Squares of the array in sorted order is:");
             DisplayArray(sortedSquares);
             Console.Write("\n");
+
 
             string s = "abca";
             if(ValidPalindrome(s)) {
@@ -112,7 +115,34 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
+                int u = 0;
+                int v = 0;
+                Array.Sort(nums1);// Ascending order of array nums1
+                Array.Sort(nums2); // Ascending order of array nums2
+                int j = nums1.Length;     // Length of array nums1
+                int k = nums2.Length;     // Lenghth of array nums2
+                var num = new List<int>();// A list intiation to collect the common elements in both the arrays.
+
+                while (u < j && v < k) //This loop ends if any of the array is empty
+                {
+                    if (nums1[u] == nums2[v])//if the elements are equal
+                    {
+                        num.Add(nums1[u]);//Common elementsadding to the list num
+                        u++;              // position increment of nums1
+                        v++;              // position increment of nums2
+                    }// end of if
+                    else if (nums1[u] < nums2[v])//if element in nums1 is less than element of nums2
+                    {
+                        u++;                     //position increment of nums 1.
+                    }//end of else if
+                    else
+                    {
+                        v++; //if element in nums1 is less than element of nums2,position increment of nums 2.
+                    }//end of else
+                }//end of while
+                int[] ret = num.ToArray();//converting list num to array ret.
+                return ret;// value returns to the method
+                
             }
             catch
             {
@@ -120,7 +150,7 @@ namespace _2019_Fall_Assignment2
             }
 
             return new int[] { };
-        }
+        }//end of Intersect
 
         public static int LargestUniqueNumber(int[] A)
         {
@@ -165,7 +195,44 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
+
+                int r = A.GetLength(0);//number of rows in binary matrix
+                int c = A.GetLength(1); // number of columns
+
+                for (int i = 0; i < r; i++)// to operate on the different the rows
+                {
+                    int k = 0;
+                    int l = c - 1;// coloumns in the matrix
+
+                    while (k <= l) // reversing the row of the matrix. 
+                    {
+                        int temp = A[i, k];
+                        A[i, k] = A[i, l]; // swapping the elements
+                        A[i, l] = temp;
+                        k++;
+                        l--;
+                    }// end of while
+                }// end of for
+
+                for (int u = 0; u < r; u++) // this loop inverts the binary matrix.
+                {
+                    for (int v = 0; v < c; v++)
+                    {
+                        if (A[u, v] == 0)
+                        {
+                            A[u, v] = 1;
+                        } // end of if
+                        else
+                        {
+                            A[u, v] = 0;
+                        }// end of else
+
+                    }// end of for
+
+                }// end of for
+
+                return A;
+                
             }
             catch
             {
@@ -173,7 +240,7 @@ namespace _2019_Fall_Assignment2
             }
 
             return new int[,] { };
-        }
+        }// end of FlipAndInvertImage
 
         public static int MinMeetingRooms(int[,] intervals)
         {
@@ -226,7 +293,41 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
+                string ls = s.ToLower();// converts all cases of string s to lower.
+                int l = ls.Length; // length of string
+
+                int k = l - 1; // variable intialisation to begin from the end of string
+                int i = 0; // variable initialisation to begin from start of the string
+                int count = 0;//counter to count  and stop if more than one unequal elements.
+
+                while (i <= k) // loop terminates when begin<=end
+                {
+                    if (ls[i] == ls[k]) // if begining and end elemts are equal
+                    {
+                        i++;
+                        k--;
+                    }
+                    //if beginning and end elements are not equal+ one element after biginning is equal to end end element+only once 
+                    else if ((ls[i] != ls[k] && ls[i + 1] == ls[k]) && count < 1)
+                    {
+                        i++;
+                        count = count + 1;
+                    }
+                    //if beginning and end elements are not equal+ one element before end is equal to end start element+only once
+                    else if ((ls[i] != ls[k] && ls[i] == ls[k - 1]) && count < 1)
+                    {
+                        Console.Write(ls[k - 1]);
+                        k--;
+                        count = count + 1;
+                    }
+                    else
+                    {
+                        if (count < 1) // to break the loop if the above conditions are false
+                            return false;// if none of the condition is trure then return false
+                        count = count + 1;
+                    }// end of else
+                }//end of while
+                return true; 
             }
             catch
             {
@@ -234,6 +335,6 @@ namespace _2019_Fall_Assignment2
             }
 
             return false;
-        }
+        }// end of ValidPalindrome
     }
 }
