@@ -75,38 +75,38 @@ namespace _2019_Fall_Assignment2
 
         public static int SearchInsert(int[] nums, int target)
         {
-            try
+            try   //Complexity is O(log(n))
             {
-                int i = 0;
+                int i = 0;  
                 int j = nums.Length - 1;
 
-                while (i <= j)
+                while (i <= j) //while loop to perform binary search
                 {
-                    int mid = (i + j) / 2;
+                    int mid = (i + j) / 2; //calculating mid of the nums array
 
-                    if (target > nums[mid])
+                    if (target > nums[mid]) //if target number is greater than the mid element of array nums
                     {
                         i = mid + 1;
-                    }
-                    else if (target < nums[mid])
+                    } // end of if
+                    else if (target < nums[mid]) //else if target is less than the mid element of array nums
                     {
                         j = mid - 1;
-                    }
-                    else
+                    } // end of else if
+                    else //if it matches then return mid
                     {
                         Console.WriteLine(mid);
                         return mid;
-                    }
-                    continue;
+                    } //end of else
+                    continue; //to continue the loop
                 }
 
                 Console.WriteLine(i);
                 return i;
-            }
+            } //end of try block
             catch
             {
                 Console.WriteLine("Exception occured while computing SearchInsert()");
-            }
+            } //end of catch block
 
             return 0;
         }
@@ -156,37 +156,50 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
-            }
+                Array.Sort(A); //sorting the array in ascending order
+
+                for (int i = A.Length - 2; i > 0; i--)
+                {
+                    if (A[i] == A[i - 1]) //comparing values of element with previous element
+                        continue; //continue if not found
+                    if (A[i] == A[i + 1]) //comparing values of element with next element
+                        continue; //continue if not found
+                    Console.WriteLine(A[i]); //print the largest unique number
+                    return A[i];
+                }
+                Console.WriteLine(-1); //print -1 if no unique largest number exists
+                return -1;
+            } // end of try block
             catch
             {
                 Console.WriteLine("Exception occured while computing LargestUniqueNumber()");
-            }
+            } //end of catch block
 
             return 0;
         }
 
         public static int CalculateTime(string keyboard, string word)
         {
-            try
+            try //Complexity O(n)
             {
-                int[] data = new int[26];
-                for (int i = 0; i < keyboard.Length; ++i)
+                int[] data = new int[26]; //initialize array for storing 26 small alphabets
+                //using decimal values of ascii for loops on word and keyboard
+                for (int i = 0; i < keyboard.Length; ++i)  
                 {
-                    data[keyboard[i] - 97] = i;
+                    data[keyboard[i] - 97] = i; //loop to get indexes of keyboard
                 }
-                int r = data[word[0] - 97];
-                for (int i = 1; i < word.Length; ++i)
+                int r = data[word[0] - 97]; //to get the first value of index of the word
+                for (int i = 1; i < word.Length; ++i) //for loop to calculate time
                 {
-                    r = r + Math.Abs(data[word[i] - 97] - data[word[i - 1] - 97]);
+                    r = r + Math.Abs(data[word[i] - 97] - data[word[i - 1] - 97]); //adding using absolute values
                 }
-                Console.WriteLine(r);
+                Console.WriteLine(r); //printing the sum or time
                 return r;
-            }
+            } //end of try block
             catch
             {
                 Console.WriteLine("Exception occured while computing CalculateTime()");
-            }
+            } //end of catch block
 
             return 0;
         }
@@ -246,12 +259,64 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
-            }
+                int[] start = new int[intervals.GetLength(0)];
+                int[] end;
+
+                if (intervals.GetLength(0) != intervals.GetLength(1)) //comparing lengths of rows and columns
+                {
+                    end = new int[intervals.GetLength(1) + 1]; //increment by 1 in case of mismatch of rows and columns
+                }
+                else //if the number of rows match the number of columns
+                {
+                    end = new int[intervals.GetLength(1)]; //the array length remains the same
+                }
+
+                //populating start time array arr
+                for (int p = 0; p < start.GetLength(0); p++)
+                {
+                    start[p] = intervals[p, 0];
+                }
+
+                //populating end time array
+                for (int k = 0; k < end.Length; k++)
+                {
+                    end[k] = intervals[k, 1];
+                }
+
+
+                int n = start.Length;
+
+                Array.Sort(start); //sort start time array in ascending order
+                Array.Sort(end); //sort end time array in ascending order
+
+                int room_needed = 1, result = 1;
+                int i = 1, j = 0;
+
+                while (i < n && j < n) 
+                {
+                    if (start[i] < end[j]) //check if start time is less than end time
+                    {
+                        room_needed++;
+                        i++;
+
+                        if (room_needed > result)
+                            result = room_needed;
+                    }
+
+                    else
+                    {
+                        room_needed--;
+                        j++;
+                    }
+                }
+
+                Console.WriteLine(room_needed); //output is the number of rooms needed
+                return room_needed;
+            } //end of try block
             catch
             {
                 Console.WriteLine("Exception occured while computing MinMeetingRooms()");
-            }
+            } //end of catch block
 
             return 0;
         }
@@ -272,19 +337,13 @@ namespace _2019_Fall_Assignment2
                 //sorting the after_squared array
                 Array.Sort(after_sqaured);
 
-                //loop to display the contents of the squared loop
-                for (int i = 0; i < after_sqaured.Length; i++)
-                {
-                    Console.Write(" " + after_sqaured[i]);
-                }
-
                 //returning the squared array
                 return after_sqaured;
-            }
+            } //end of try block
             catch
             {
                 Console.WriteLine("Exception occured while computing SortedSquares()");
-            }
+            } // end of catch block
 
             return new int[] { };
         }
