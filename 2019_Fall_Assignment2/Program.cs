@@ -94,7 +94,6 @@ namespace _2019_Fall_Assignment2
                     } // end of else if
                     else //if it matches then return mid
                     {
-                        Console.WriteLine(mid);
                         return mid;
                     } //end of else
                     continue; //to continue the loop
@@ -143,11 +142,11 @@ namespace _2019_Fall_Assignment2
                 int[] ret = num.ToArray();//converting list num to array ret.
                 return ret;// value returns to the method
                 
-            }
+            }//end of try block
             catch
             {
                 Console.WriteLine("Exception occured while computing Intersect()");
-            }
+            }// end of catch block
 
             return new int[] { };
         }//end of Intersect
@@ -164,8 +163,7 @@ namespace _2019_Fall_Assignment2
                         continue; //continue if not found
                     if (A[i] == A[i + 1]) //comparing values of element with next element
                         continue; //continue if not found
-                    Console.WriteLine(A[i]); //print the largest unique number
-                    return A[i];
+                        return A[i];
                 }
                 Console.WriteLine(-1); //print -1 if no unique largest number exists
                 return -1;
@@ -193,7 +191,6 @@ namespace _2019_Fall_Assignment2
                 {
                     r = r + Math.Abs(data[word[i] - 97] - data[word[i - 1] - 97]); //adding using absolute values
                 }
-                Console.WriteLine(r); //printing the sum or time
                 return r;
             } //end of try block
             catch
@@ -246,11 +243,11 @@ namespace _2019_Fall_Assignment2
 
                 return A;
                 
-            }
+            }// end of try block
             catch
             {
                 Console.WriteLine("Exception occured while computing FlipAndInvertImage()");
-            }
+            }// end of catch block
 
             return new int[,] { };
         }// end of FlipAndInvertImage
@@ -310,8 +307,7 @@ namespace _2019_Fall_Assignment2
                     }
                 }
 
-                Console.WriteLine(room_needed); //output is the number of rooms needed
-                return room_needed;
+               return room_needed;
             } //end of try block
             catch
             {
@@ -387,11 +383,11 @@ namespace _2019_Fall_Assignment2
                     }// end of else
                 }//end of while
                 return true; 
-            }
+            }//end of try block
             catch
             {
                 Console.WriteLine("Exception occured while computing ValidPalindrome()");
-            }
+            }// end of catch block
 
             return false;
         }// end of ValidPalindrome
