@@ -74,7 +74,31 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
+                int i = 0;
+                int j = nums.Length - 1;
+
+                while (i <= j)
+                {
+                    int mid = (i + j) / 2;
+
+                    if (target > nums[mid])
+                    {
+                        i = mid + 1;
+                    }
+                    else if (target < nums[mid])
+                    {
+                        j = mid - 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine(mid);
+                        return mid;
+                    }
+                    continue;
+                }
+
+                Console.WriteLine(i);
+                return i;
             }
             catch
             {
@@ -116,7 +140,18 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
+                int[] data = new int[26];
+                for (int i = 0; i < keyboard.Length; ++i)
+                {
+                    data[keyboard[i] - 97] = i;
+                }
+                int r = data[word[0] - 97];
+                for (int i = 1; i < word.Length; ++i)
+                {
+                    r = r + Math.Abs(data[word[i] - 97] - data[word[i - 1] - 97]);
+                }
+                Console.WriteLine(r);
+                return r;
             }
             catch
             {
@@ -158,7 +193,26 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
+                //initializing array for storing values after sqauring them
+                int[] after_sqaured = new int[A.Length];
+
+                //loop to store squared value in the "after_sqaured" array
+                for (int i = 0; i < A.Length; i++)
+                {
+                    after_sqaured[i] = A[i] * A[i];
+                }
+
+                //sorting the after_squared array
+                Array.Sort(after_sqaured);
+
+                //loop to display the contents of the squared loop
+                for (int i = 0; i < after_sqaured.Length; i++)
+                {
+                    Console.Write(" " + after_sqaured[i]);
+                }
+
+                //returning the squared array
+                return after_sqaured;
             }
             catch
             {
