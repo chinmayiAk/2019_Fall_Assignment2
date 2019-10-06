@@ -127,7 +127,7 @@ namespace _2019_Fall_Assignment2
                 {
                     if (nums1[u] == nums2[v])//if the elements are equal
                     {
-                        num.Add(nums1[u]);//Common elementsadding to the list num
+                        num.Add(nums1[u]);//Common elements adding to the list num
                         u++;              // position increment of nums1
                         v++;              // position increment of nums2
                     }// end of if
@@ -199,7 +199,7 @@ namespace _2019_Fall_Assignment2
                 int r = A.GetLength(0);//number of rows in binary matrix
                 int c = A.GetLength(1); // number of columns
 
-                for (int i = 0; i < r; i++)// to operate on the different the rows
+                for (int i = 0; i < r; i++)// to operate on the different rows
                 {
                     int k = 0;
                     int l = c - 1;// coloumns in the matrix
@@ -300,20 +300,20 @@ namespace _2019_Fall_Assignment2
                 int i = 0; // variable initialisation to begin from start of the string
                 int count = 0;//counter to count  and stop if more than one unequal elements.
 
-                while (i <= k) // loop terminates when begin<=end
+                while (i <= k) // loop terminates when begin<=end is not true
                 {
                     if (ls[i] == ls[k]) // if begining and end elemts are equal
                     {
                         i++;
                         k--;
                     }
-                    //if beginning and end elements are not equal+ one element after biginning is equal to end end element+only once 
+                    //if beginning and end elements are not equal+ one element after biginning is equal to end element+only once 
                     else if ((ls[i] != ls[k] && ls[i + 1] == ls[k]) && count < 1)
                     {
                         i++;
                         count = count + 1;
                     }
-                    //if beginning and end elements are not equal+ one element before end is equal to end start element+only once
+                    //if beginning and end elements are not equal+ one element before end is equal to start element+only once
                     else if ((ls[i] != ls[k] && ls[i] == ls[k - 1]) && count < 1)
                     {
                         Console.Write(ls[k - 1]);
